@@ -57,7 +57,5 @@ describe('<Dashboard />', () => {
     const foul = queryByText(/foul/i);
     fireEvent.click(foul);
     expect(state.foul).toBe(1);
-  });
-
-  
+  });  
 });

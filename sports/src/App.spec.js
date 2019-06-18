@@ -16,17 +16,38 @@ describe('<App />', () => {
     render(<App />);
   });
 
-  it('renders Hello World to the screen', () => {
-    const { getByText } = render(<App />);
-    getByText(/hello world/i);
-  });
-});
+  describe('Display', () => {
+    it('should update strikes correctly dashboard button is clicked', () => {
+      const { queryByText } = render(<App />);
+      const strikeBtn = queryByText(/strike$/i);
+      expect(strikeBtn).toBeTruthy();
 
-describe('Greet Button', () => {
-  it('says hello developers', () => {
-    const { queryByText } = render(<App />);
-    const button = queryByText(/greet/i);
-    fireEvent.click(button);
-    expect(queryByText(/hello developers/i)).toBeTruthy();
+      const strikeDisplay = queryByText(/strikes: \d/i);
+      expect(strikeDisplay).toBeTruthy();
+
+      fireEvent.click(strikeBtn);
+      expect(queryByText(/strikes: 1/i)).toBeTruthy();
+    });
   });
+  
+  describe('Count Rules', () => {
+    it.todo('should correctly reset balls and strikes at 3 strikes');
+    it.todo('should correctly reset balls and strikes at 4 balls');
+    it.todo('should correctly reset balls and strikes on a hit');
+    it.todo('should increase strikes up to a maximum of two');
+  });
+
+//   it('renders Hello World to the screen', () => {
+//     const { getByText } = render(<App />);
+//     getByText(/hello world/i);
+//   });
+// });
+
+// describe('Greet Button', () => {
+//   it('says hello developers', () => {
+//     const { queryByText } = render(<App />);
+//     const button = queryByText(/greet/i);
+//     fireEvent.click(button);
+//     expect(queryByText(/hello developers/i)).toBeTruthy();
+//   });
 });
