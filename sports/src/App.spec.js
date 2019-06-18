@@ -100,7 +100,18 @@ describe('<App />', () => {
       expect(queryByText(/balls: 0/i)).toBeTruthy();
       expect(queryByText(/strikes: 0/i)).toBeTruthy();
     });
-    it.todo('should increase strikes up to a maximum of two');
+    it('should increase strikes up to a maximum of two on fouls', () => {
+      const { queryByText } = render(<App />);
+      const foulBtn = queryByText(/foul$/i);
+      expect(foulBtn).toBeTruthy();
+
+      fireEvent.click(foulBtn);
+      expect(queryByText(/strikes: 1/i)).toBeTruthy();
+      fireEvent.click(foulBtn);
+      expect(queryByText(/strikes: 2/i)).toBeTruthy();
+      fireEvent.click(foulBtn);
+      expect(queryByText(/strikes: 2/i)).toBeTruthy();
+    });
   });
 
 //   it('renders Hello World to the screen', () => {

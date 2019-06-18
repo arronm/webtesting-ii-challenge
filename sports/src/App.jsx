@@ -16,8 +16,8 @@ function App() {
   const handleIncrement = (name) => {
     switch(name) {
       case 'strike': {
-        let strike = state.strike >= 2 ? 0 : state.strike + 1;
-        let ball = state.strike >= 2 ? 0 : state.ball;
+        const strike = state.strike >= 2 ? 0 : state.strike + 1;
+        const ball = state.strike >= 2 ? 0 : state.ball;
         setState(state => ({
           ...state,
           strike,
@@ -25,7 +25,7 @@ function App() {
         }));
         break;
       }
-      case 'ball':
+      case 'ball': {
         const ball = state.ball >= 3 ? 0 : state.ball + 1;
         const strike = state.ball >= 3 ? 0 : state.strike;
         setState(state => ({
@@ -34,18 +34,29 @@ function App() {
           strike,
         }));
         break;
-      case 'hit':
+      }
+      case 'hit': {
         setState(state => ({
           ...state,
           ball: 0,
           strike: 0,
         }));
         break;
-      default:
+      }
+      case 'foul': {
+        let strike = state.strike < 2 ? state.strike + 1 : state.strike;
+        setState(state => ({
+          ...state,
+          strike,
+        }));
+        break;
+      }
+      default: {
         setState(state => ({
           ...state,
           [name]: state[name] + 1,
         }));
+      }
     }
   }
 
