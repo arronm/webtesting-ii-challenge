@@ -112,6 +112,17 @@ describe('<App />', () => {
       fireEvent.click(foulBtn);
       expect(queryByText(/strikes: 2/i)).toBeTruthy();
     });
+    it('should increase outs correctly', () => {
+      const { queryByText } = render(<App />);
+      const strikeBtn = queryByText(/strike$/i);
+      expect(strikeBtn).toBeTruthy();
+
+      fireEvent.click(strikeBtn);
+      fireEvent.click(strikeBtn);
+      fireEvent.click(strikeBtn);
+      
+      expect(queryByText(/outs: 1/i)).toBeTruthy();
+    })
   });
 
 //   it('renders Hello World to the screen', () => {
