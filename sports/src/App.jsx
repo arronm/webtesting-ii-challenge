@@ -6,6 +6,10 @@ import Dashboard from './components/Dashboard';
 function App() {
   const [state, setState] = useState({
     greeting: 'Hello World',
+    ball: 0,
+    strike: 0,
+    foul: 0,
+    hit: 0,
   });
 
   const greetDevelopers = () => {
@@ -15,9 +19,17 @@ function App() {
     }));
   };
 
+  const handleIncrement = (name) => {
+    setState(state => ({
+      ...state,
+      [name]: state[name] + 1,
+    }));
+  }
+
   return (
     <div className="App">
-      <Dashboard />
+      <Dashboard handleIncrement={handleIncrement} />
+      TEST: {state.ball}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
