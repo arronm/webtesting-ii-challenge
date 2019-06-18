@@ -68,7 +68,7 @@ describe('<App />', () => {
       const strikeBtn = queryByText(/strike$/i);
       expect(strikeBtn).toBeTruthy();
       const ballsBtn = queryByText(/ball$/i);
-      expect(strikeBtn).toBeTruthy();
+      expect(ballsBtn).toBeTruthy();
 
       const strikeDisplay = queryByText(/strikes: \d/i);
       expect(strikeDisplay).toBeTruthy();
@@ -84,7 +84,22 @@ describe('<App />', () => {
       expect(queryByText(/balls: 0/i)).toBeTruthy();
       expect(queryByText(/strikes: 0/i)).toBeTruthy();
     });
-    it.todo('should correctly reset balls and strikes on a hit');
+    it('should correctly reset balls and strikes on a hit', () => {
+      const { queryByText } = render(<App />);
+      const hitBtn = queryByText(/hit$/i);
+      expect(hitBtn).toBeTruthy();
+      const strikeBtn = queryByText(/strike$/i);
+      expect(strikeBtn).toBeTruthy();
+      const ballsBtn = queryByText(/ball$/i);
+      expect(ballsBtn).toBeTruthy();
+
+      fireEvent.click(strikeBtn);
+      fireEvent.click(ballsBtn);
+      fireEvent.click(hitBtn);
+
+      expect(queryByText(/balls: 0/i)).toBeTruthy();
+      expect(queryByText(/strikes: 0/i)).toBeTruthy();
+    });
     it.todo('should increase strikes up to a maximum of two');
   });
 

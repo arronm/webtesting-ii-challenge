@@ -34,6 +34,13 @@ function App() {
           strike,
         }));
         break;
+      case 'hit':
+        setState(state => ({
+          ...state,
+          ball: 0,
+          strike: 0,
+        }));
+        break;
       default:
         setState(state => ({
           ...state,
