@@ -10,6 +10,7 @@ function App() {
     ball: 0,
     strike: 0,
     outs: 0,
+    inning: 1,
   });
 
   const handleIncrement = (name) => {
@@ -18,8 +19,10 @@ function App() {
         const strike = state.strike >= 2 ? 0 : state.strike + 1;
         const ball = state.strike >= 2 ? 0 : state.ball;
         const outs = state.strike >= 2 ? state.outs + 1 : state.outs;
+        const inning = Math.floor(outs / 6) + 1;
         setState(state => ({
           ...state,
+          inning,
           outs,
           strike,
           ball,
@@ -66,6 +69,7 @@ function App() {
       <Dashboard handleIncrement={handleIncrement} />
       <Display balls={state.ball} strikes={state.strike} />
       <div>Outs: {state.outs}</div>
+      <div>Inning: {state.inning}</div>
     </div>
   );
 }

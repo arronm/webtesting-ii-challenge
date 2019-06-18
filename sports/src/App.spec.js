@@ -122,20 +122,17 @@ describe('<App />', () => {
       fireEvent.click(strikeBtn);
       
       expect(queryByText(/outs: 1/i)).toBeTruthy();
-    })
+    });
+    it('should increase innings correctly', () => {
+      const { queryByText } = render(<App />);
+      const strikeBtn = queryByText(/strike$/i);
+      expect(strikeBtn).toBeTruthy();
+
+      for (let i = 0; i < 18; i++) {
+        fireEvent.click(strikeBtn);
+      }
+      
+      expect(queryByText(/inning: 2/i)).toBeTruthy();
+    });
   });
-
-//   it('renders Hello World to the screen', () => {
-//     const { getByText } = render(<App />);
-//     getByText(/hello world/i);
-//   });
-// });
-
-// describe('Greet Button', () => {
-//   it('says hello developers', () => {
-//     const { queryByText } = render(<App />);
-//     const button = queryByText(/greet/i);
-//     fireEvent.click(button);
-//     expect(queryByText(/hello developers/i)).toBeTruthy();
-//   });
 });
