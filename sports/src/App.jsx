@@ -13,18 +13,23 @@ function App() {
     hit: 0,
   });
 
-  // const greetDevelopers = () => {
-  //   setState(state => ({
-  //     ...state,
-  //     greeting: 'Hello Developers',
-  //   }));
-  // };
-
   const handleIncrement = (name) => {
-    setState(state => ({
-      ...state,
-      [name]: state[name] + 1,
-    }));
+    switch(name) {
+      case 'strike':
+        const strike = state.strike >=2 ? 0 : state.strike + 1;
+        const ball = state.strike >=2 ? 0 : state.ball;
+        setState(state => ({
+          ...state,
+          strike,
+          ball,
+        }));
+        break;
+      default:
+        setState(state => ({
+          ...state,
+          [name]: state[name] + 1,
+        }));
+    }
   }
 
   return (

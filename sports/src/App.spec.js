@@ -43,7 +43,27 @@ describe('<App />', () => {
   });
   
   describe('Count Rules', () => {
-    it.todo('should correctly reset balls and strikes at 3 strikes');
+    it('should correctly reset balls and strikes at 3 strikes', () => {
+      const { queryByText } = render(<App />);
+      const strikeBtn = queryByText(/strike$/i);
+      expect(strikeBtn).toBeTruthy();
+      const ballsBtn = queryByText(/ball$/i);
+      expect(strikeBtn).toBeTruthy();
+
+      const strikeDisplay = queryByText(/strikes: \d/i);
+      expect(strikeDisplay).toBeTruthy();
+      const ballsDisplay = queryByText(/balls: \d/i);
+      expect(ballsDisplay).toBeTruthy();
+      
+      fireEvent.click(ballsBtn);
+      fireEvent.click(strikeBtn);
+      fireEvent.click(strikeBtn);
+      fireEvent.click(strikeBtn);
+
+      expect(queryByText(/balls: 0/i)).toBeTruthy();
+      expect(queryByText(/strikes: 0/i)).toBeTruthy();
+
+    });
     it.todo('should correctly reset balls and strikes at 4 balls');
     it.todo('should correctly reset balls and strikes on a hit');
     it.todo('should increase strikes up to a maximum of two');
