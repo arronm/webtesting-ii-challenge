@@ -5,6 +5,6 @@ import Display from '.';
 
 describe('<Display />', () => {
   it('renders without errors', () => {
-    render(<Display />);
+    render(<Display />); 
   });
 });

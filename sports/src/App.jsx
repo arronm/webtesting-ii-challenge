@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Dashboard from './components/Dashboard';
 
 function App() {
   const [state, setState] = useState({
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div className="App">
+      <Dashboard />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
