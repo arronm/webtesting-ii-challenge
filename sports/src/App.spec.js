@@ -17,7 +17,7 @@ describe('<App />', () => {
   });
 
   describe('Display', () => {
-    it('should update strikes correctly dashboard button is clicked', () => {
+    it('should update strikes correctly when dashboard button is clicked', () => {
       const { queryByText } = render(<App />);
       const strikeBtn = queryByText(/strike$/i);
       expect(strikeBtn).toBeTruthy();
@@ -27,6 +27,18 @@ describe('<App />', () => {
 
       fireEvent.click(strikeBtn);
       expect(queryByText(/strikes: 1/i)).toBeTruthy();
+    });
+
+    it('should update balls correctly when dashboard button is clicked', () => {
+      const { queryByText } = render(<App />);
+      const ballsBtn = queryByText(/ball$/i);
+      expect(ballsBtn).toBeTruthy();
+
+      const ballsDisplay = queryByText(/balls: \d/i);
+      expect(ballsDisplay).toBeTruthy();
+
+      fireEvent.click(ballsBtn);
+      expect(queryByText(/balls: 1/i)).toBeTruthy();
     });
   });
   
